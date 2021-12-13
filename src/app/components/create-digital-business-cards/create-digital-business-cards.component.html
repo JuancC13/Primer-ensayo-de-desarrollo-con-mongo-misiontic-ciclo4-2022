@@ -1,0 +1,39 @@
+<div class="container">
+    <h2>{{title}}</h2>
+
+    <div class="message success" *ngIf="status == 'success'">La tarjeta se a creado correctamente puedes verla <a href="#">aquí</a></div>
+
+    <div class="message failed" *ngIf="status == 'failed'">La tarjeta aun no se a creado correctamente</div>
+
+    <form #projectForm="ngForm" (ngSubmit)="onSubmit(projectForm)">
+        <p>
+            <label for="name">Nombre<span class="asterisco-requerido">*</span></label>
+            <input type="text" name="name" #name="ngModel" [(ngModel)]="project.name"required/>
+            <br><br>
+            <span class="form_error" *ngIf="name.touched && !name.valid">El nombre es obligatorio</span>    
+        </p>
+
+        <p>
+            <label for="descripcion">Descripcion<span class="asterisco-requerido">*</span></label>
+            <textarea name="descripcion" #descripcion="ngModel" [(ngModel)]="project.descripcion"required></textarea>
+            <br><br>
+            <span class="form_error" *ngIf="descripcion.touched && !descripcion.valid">La descripción es obligatoria</span>
+        </p>
+
+        <p>
+            <label for="categoria">Categoria<span class="asterisco-requerido">*</span></label>
+            <input type="text" name="categoria" #name="ngModel" [(ngModel)]="project.categoria"required/>
+        </p>
+
+        <p>
+            <label for="fecha">Fecha<span class="asterisco-requerido">*</span></label>
+            <input type="text" name="fecha" #name="ngModel" [(ngModel)]="project.fecha">
+            
+        </p>
+        <p>
+            <label for="image">Imagen de la tarjeta<span class="asterisco-requerido">*</span></label>
+            <input type="file" name="image" placeholder="Subir imagen" (change)="fileChangeEvent($event)">
+        </p>
+        <input type="submit" value="Enviar" [disabled]="!projectForm.form.valid">
+    </form>
+</div>

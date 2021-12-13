@@ -1,11 +1,6 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { routing, appRoutingProviders } from './apps.routing';
+import { ModuleWithProviders } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { ProductsComponent } from './components/products/products.component';
@@ -22,35 +17,28 @@ import { PortfolioVideogamesComponent } from './components/portfolio-videogames/
 import { ContactComponent } from './components/contact/contact.component';
 import { ErrorComponent } from './components/error/error.component';
 
+const appRoutes: Routes = [
+    {path: '', component: AboutusComponent},
+    {path: 'sobre-nosotros', component: AboutusComponent},
+    {path: 'proyectos', component: ProjectsComponent},
+    {path: 'productos', component: ProductsComponent},
+    
+    {path: 'crear-tarjetas', component: CreateDigitalBusinessCardsComponent},
+    {path: 'crear-catalogos', component: CreateDigitalCatalogsComponent},
+    {path: 'crear-videojuegos', component: CreateVideogamesComponent},
+    {path: 'crear-websites', component: CreateWebsitesComponent},
+    {path: 'crear-apps', component: CreateAppsComponent},
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    AboutusComponent,
-    ProjectsComponent,
-    ProductsComponent,
-    CreateDigitalBusinessCardsComponent,
-    CreateDigitalCatalogsComponent,
-    CreateVideogamesComponent,
-    CreateWebsitesComponent,
-    CreateAppsComponent,
-    PortfolioAppsComponent,
-    PortfolioWebsitesComponent,
-    PortfolioDigitalBusinessCardsComponent,
-    PortfolioDigitalCatalogsComponent,
-    PortfolioVideogamesComponent,
-    ContactComponent,
-    ErrorComponent
-  ],
-  imports: [
-    BrowserModule,
-    routing,
-    HttpClientModule,
-    FormsModule
-  ],
-  providers: [
-    appRoutingProviders
-  ],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
+    {path: 'portafolio-apps', component: PortfolioAppsComponent},
+    {path: 'portafolio-websites', component: PortfolioWebsitesComponent},
+    {path: 'portafolio-tarjetas', component: PortfolioDigitalBusinessCardsComponent},
+    {path: 'portafolio-catalogos', component: PortfolioDigitalCatalogsComponent},
+    {path: 'portafolio-videojuegos', component: PortfolioVideogamesComponent},
+
+    {path: 'contacto', component: ContactComponent},
+
+    {path: '**', component: ErrorComponent}
+];
+
+export const appRoutingProviders: any[] = [];
+export const routing : ModuleWithProviders<any> = RouterModule.forRoot(appRoutes);
